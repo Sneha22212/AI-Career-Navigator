@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Career Navigator</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        AI Career Navigator
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="#features">Features</a>
+        </li>
+
+        <li>
+            <a href="#workflow">How It Works</a>
+        </li>
+
+        <li>
+            <a href="#about">About</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-left">
+
+        <h1>
+            Build Your Career With
+            <span>AI Intelligence</span>
+        </h1>
+
+        <p>
+            Analyze resumes, detect skill gaps,
+            generate interview questions,
+            and receive personalized AI-powered career guidance.
+        </p>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+
+            <input
+                type="text"
+                name="target_role"
+                placeholder="Enter Target Role (Data Scientist, AIML Engineer, SDE)"
+                required
+                class="role-input"
+            >
+
+            <textarea
+                name="job_description"
+                placeholder="Paste Job Description Here (Optional)"
+                class="jd-input"
+            ></textarea>
+
+            <div class="hero-buttons">
+
+                <label for="resume" class="upload-box">
+
+                    <div class="upload-content">
+
+                        <h3>📄 Upload Resume</h3>
+
+                        <p id="file-name">
+                            Click here to choose PDF
+                        </p>
+
+                    </div>
+
+                </label>
+
+                <input
+                    type="file"
+                    id="resume"
+                    name="resume"
+                    accept=".pdf"
+                    required
+                    hidden
+                >
+
+                <button type="submit">
+                    Analyze Resume
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <!-- RIGHT CARD -->
+
+    <div class="hero-right">
+
+        <div class="glass-card">
+
+            <h2>AI Insights</h2>
+
+            <div class="score-circle">
+                92%
+            </div>
+
+            <div class="skill">
+
+                <p>Python</p>
+
+                <div class="bar">
+                    <div class="fill python"></div>
+                </div>
+
+            </div>
+
+            <div class="skill">
+
+                <p>Machine Learning</p>
+
+                <div class="bar">
+                    <div class="fill ml"></div>
+                </div>
+
+            </div>
+
+            <div class="skill">
+
+                <p>DSA</p>
+
+                <div class="bar">
+                    <div class="fill dsa"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="features" id="features">
+
+    <h2>Powerful AI Features</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>ATS Analysis</h3>
+            <p>Analyze resume compatibility with modern hiring systems.</p>
+        </div>
+
+        <div class="card">
+            <h3>Skill Gap Detection</h3>
+            <p>Identify missing technologies and improve placement readiness.</p>
+        </div>
+
+        <div class="card">
+            <h3>Interview Questions</h3>
+            <p>Generate personalized AI-based technical interview questions.</p>
+        </div>
+
+        <div class="card">
+            <h3>Career Roadmap</h3>
+            <p>Get customized learning and DSA preparation guidance.</p>
+        </div>
+
+        <div class="card">
+            <h3>Project Suggestions</h3>
+            <p>Receive unique project ideas based on your profile.</p>
+        </div>
+
+        <div class="card">
+            <h3>Role Readiness</h3>
+            <p>Evaluate readiness for AIML, SDE, and Data Science roles.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- WORKFLOW -->
+
+<section class="workflow" id="workflow">
+
+    <h2>How It Works</h2>
+
+    <div class="steps">
+
+        <div class="step">
+            <h3>1</h3>
+            <p>Upload Resume</p>
+        </div>
+
+        <div class="step">
+            <h3>2</h3>
+            <p>AI Analyzes Skills</p>
+        </div>
+
+        <div class="step">
+            <h3>3</h3>
+            <p>Get Career Insights</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="workflow" id="about">
+
+    <h2>About AI Career Navigator</h2>
+
+    <div class="card" style="max-width:900px;margin:auto;">
+
+        <p style="line-height:2;font-size:18px;">
+
+            AI Career Navigator is an AI-powered resume analysis platform
+            that helps students and professionals evaluate their ATS score,
+            identify skill gaps, generate personalized interview questions,
+            discover suitable projects, and receive role-specific career guidance.
+
+            The platform uses Gemini AI, Flask, PDF processing, and intelligent
+            resume analysis to provide actionable insights for career growth.
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+        Built with Flask • Gemini API • AI Intelligence
+    </p>
+
+</footer>
+
+<script>
+
+    document.getElementById("resume").addEventListener("change", function() {
+
+        if(this.files.length > 0){
+
+            document.getElementById("file-name")
+            .innerText = this.files[0].name;
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

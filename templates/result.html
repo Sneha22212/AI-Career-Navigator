@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Career Navigator Dashboard</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="blur blur1"></div>
+<div class="blur blur2"></div>
+
+<div class="dashboard-container">
+
+<div class="dashboard-header">
+
+    <h1>AI Career Navigator</h1>
+
+    <p>
+        Personalized AI Resume Analysis Dashboard
+    </p>
+
+</div>
+
+<!-- TOP SECTION -->
+
+<div class="dashboard-top">
+
+    <div class="ats-card">
+
+        <div
+        class="score-ring"
+        style="
+        background:
+        conic-gradient(
+      #00e5ff 0deg,
+      #7c4dff {{ ring_degree }}deg,
+      rgba(255,255,255,0.08) {{ ring_degree }}deg
+        );
+        ">
+
+            <div class="score-inner">
+
+                <h2>{{ ats_score }}%</h2>
+
+                <span>ATS Score</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="info-card">
+
+        <div class="card-label">
+            🎯 Target Role
+        </div>
+
+        <div class="card-value">
+            {{ target_role }}
+        </div>
+
+    </div>
+
+    <div class="info-card">
+
+        <div class="card-label">
+            📊 JD Match Score
+        </div>
+
+        <div class="card-value">
+            {{ jd_match_score }}
+        </div>
+
+    </div>
+
+    <div class="info-card">
+
+        <div class="card-label">
+            📈 Role Match
+        </div>
+
+        <div class="
+        match-pill
+        {% if role_match == 'Strong Match' %}
+        match-strong
+        {% elif role_match == 'Moderate Match' %}
+        match-moderate
+        {% else %}
+        match-weak
+        {% endif %}
+        ">
+            {{ role_match }}
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SUMMARY -->
+
+<div class="dashboard-card">
+
+    <h2>📝 Candidate Summary</h2>
+
+    {% for item in summary %}
+    <p class="summary-text">
+        {{ item }}
+    </p>
+    {% endfor %}
+
+</div>
+
+<!-- STRENGTHS WEAKNESSES -->
+
+<div class="double-grid">
+
+    <div class="dashboard-card strength-card">
+
+        <h2>✅ Strengths</h2>
+
+        <ul class="skills-list">
+
+            {% for item in strengths %}
+            <li>{{ item }}</li>
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+    <div class="dashboard-card weakness-card">
+
+        <h2>⚠ Weaknesses</h2>
+
+        <ul class="skills-list">
+
+            {% for item in weaknesses %}
+            <li>{{ item }}</li>
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+</div>
+
+<!-- SKILLS ROW -->
+
+<div class="triple-grid">
+
+    <div class="dashboard-card">
+
+        <h2>🚀 Top Skills</h2>
+
+        <ul class="skills-list">
+
+            {% for skill in top_skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h2>🔥 Missing Skills</h2>
+
+        <ul class="skills-list">
+
+            {% for skill in missing_skills %}
+            <li>{{ skill }}</li>
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+    <div class="dashboard-card">
+
+        <h2>🔍 Missing Keywords</h2>
+
+        <div class="keyword-container">
+
+            {% for keyword in missing_keywords %}
+            <span class="keyword-tag">
+                {{ keyword }}
+            </span>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- QUESTIONS -->
+
+<div class="dashboard-card">
+
+    <h2>🎤 Interview Questions</h2>
+
+    <ol class="question-list">
+
+        {% for question in interview_questions %}
+        <li>{{ question }}</li>
+        {% endfor %}
+
+    </ol>
+
+</div>
+
+<!-- PROJECTS -->
+
+<div class="dashboard-card">
+
+    <h2>💡 Suggested Projects</h2>
+
+    <ol class="question-list">
+
+        {% for project in suggested_projects %}
+        <li>{{ project }}</li>
+        {% endfor %}
+
+    </ol>
+
+</div>
+
+<!-- JD -->
+
+<div class="dashboard-card">
+
+    <h2>🎯 JD Improvements</h2>
+
+    <ol class="question-list">
+
+        {% for item in jd_improvements %}
+        <li>{{ item }}</li>
+        {% endfor %}
+
+    </ol>
+
+</div>
+
+<!-- CAREER -->
+
+<div class="dashboard-card">
+
+    <h2>📚 Career Improvement Suggestions</h2>
+
+    <ol class="question-list">
+
+        {% for suggestion in career_suggestions %}
+        <li>{{ suggestion }}</li>
+        {% endfor %}
+
+    </ol>
+
+</div>
+
+<div class="dashboard-card">
+
+    <h2>🗺️ Career Roadmap</h2>
+
+    <div class="roadmap-container">
+
+        {% for step in career_roadmap %}
+
+        <div class="roadmap-step">
+
+            <div class="roadmap-number">
+                {{ loop.index }}
+            </div>
+
+            <div class="roadmap-content">
+                {{ step }}
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<div class="button-container">
+
+    <a href="/download-report">
+
+        <button class="back-btn">
+            📄 Download PDF Report
+        </button>
+
+    </a>
+
+    <a href="/">
+
+        <button class="back-btn">
+            Analyze Another Resume
+        </button>
+
+    </a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
